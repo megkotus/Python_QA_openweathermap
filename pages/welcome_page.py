@@ -14,6 +14,16 @@ class WelcomePage():
         self.imperial_units_button = self.page.get_by_text('Imperial')
         self.metric_units_button = self.page.get_by_text('Metric')
 
+        self.eight_day_forecast_dropdown_button = self.page.locator(
+            'ul.day-list li:first-child div.day-list-values span.chevron-container')
+
+        self.units_toggle_css = self.page.locator('div#selected')
+
+        self.current_temperature = self.page.locator('div.current-temp span')
+        self.current_weather_items = self.page.locator('ul.weather-items')
+        self.eight_day_forecast = self.page.locator('ul.day-list')
+        self.eight_day_forecast_dropdown = self.page.locator('.scrolling-container-content')
+
 
     def visit(self):
         self.page.goto(urls.base_url)
