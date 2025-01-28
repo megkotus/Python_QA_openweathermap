@@ -23,6 +23,8 @@ class WelcomePage():
         self.current_weather_items = self.page.locator('ul.weather-items')
         self.eight_day_forecast = self.page.locator('ul.day-list')
         self.eight_day_forecast_dropdown = self.page.locator('.scrolling-container-content')
+        self.different_weather = self.page.get_by_text("Different Weather?")
+        self.different_weather_pop_up = self.page.get_by_role("heading", name="Different weather")
 
 
     def visit(self):
@@ -43,3 +45,6 @@ class WelcomePage():
 
     def open_first_day_dropdown_of_eight_day_forecast(self):
         self.eight_day_forecast_dropdown_button.click()
+
+    def open_different_weather_pop_up(self):
+        self.different_weather.click()
