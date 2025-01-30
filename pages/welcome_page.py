@@ -25,6 +25,8 @@ class WelcomePage():
         self.eight_day_forecast_dropdown = self.page.locator('.scrolling-container-content')
         self.different_weather = self.page.get_by_text("Different Weather?")
         self.different_weather_pop_up = self.page.get_by_role("heading", name="Different weather")
+        self.different_weather_pop_up_first_option = self.page.locator('//li[@class="activeIcon"]')
+        self.different_weather_pop_up_send_button = self.page.get_by_text('Send')
 
 
     def visit(self):
@@ -48,3 +50,9 @@ class WelcomePage():
 
     def open_different_weather_pop_up(self):
         self.different_weather.click()
+
+    def choose_different_weather_first_option(self):
+        self.different_weather_pop_up_first_option.first.click()
+
+    def different_weather_click_send_button(self):
+        self.different_weather_pop_up_send_button.click()
