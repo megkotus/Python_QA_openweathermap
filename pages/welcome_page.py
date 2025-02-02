@@ -58,3 +58,4 @@ class WelcomePage():
             target_position={"x": 15, "y": 15}
         )
 
+

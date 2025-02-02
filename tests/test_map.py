@@ -9,3 +9,4 @@ def test_map_is_movable(welcome_page):
 
     expect(welcome_page.small_map_center).not_to_have_css('transform', 'matrix(1, 0, 0, 1, 0, 0)')
 
+
