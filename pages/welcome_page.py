@@ -26,6 +26,8 @@ class WelcomePage():
         self.different_weather = self.page.get_by_text("Different Weather?")
         self.different_weather_pop_up = self.page.get_by_role("heading", name="Different weather")
 
+        self.small_map = self.page.locator('div.map')
+        self.small_map_center = self.page.locator('.leaflet-map-pane')
 
     def visit(self):
         self.page.goto(urls.base_url)
@@ -48,3 +50,11 @@ class WelcomePage():
 
     def open_different_weather_pop_up(self):
         self.different_weather.click()
+
+    def move_small_map(self):
+        self.small_map.drag_to(
+            self.small_map,
+            source_position={"x": 5, "y": 5},
+            target_position={"x": 15, "y": 15}
+        )
+
