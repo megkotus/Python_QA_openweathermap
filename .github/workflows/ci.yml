@@ -30,11 +30,11 @@ jobs:
         with:
           python-version: "3.12"  # Установка нужной версии Python
 
-        # Установка xvfb
+      # Установка xvfb
       - name: Install xvfb
         run: sudo apt-get install -y xvfb
 
-        # Установка зависимостей из requirements.txt
+      # Установка зависимостей из requirements.txt
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip  # Обновление pip
@@ -43,17 +43,12 @@ jobs:
       - name: Verify installed packages
         run: pip freeze
 
-      # Отслеживает, какой тест чаще всего не проходит
-      # - name: Run tests and generate JUnit report
-      #   run: |
-      #     pytest --junitxml=report.xml
-
       # Установка необходимых браузеров Playwright Chrome.
       - name: Install Playwright browsers
         run: |
           python -m playwright install chromium
 
-      #Установка линтера Ruff
+      # Установка линтера Ruff
       - name: Install the code linting and formatting tool Ruff
         run: pip install ruff
 
@@ -65,14 +60,15 @@ jobs:
         run: ruff format --diff --no-cache --target-version=py312
         continue-on-error: true # Не останавливает CI, если есть проблемы с форматированием(сомнительно)
 
-        # Запуск всех тестов(мин инф о тестах)
-      - name: Run tests
+      # Запуск всех тестов с использованием xvfb
+      - name: Run tests with xvfb-run
         run: |
-          pytest -s --alluredir=allure-results --disable-warnings -q
+          xvfb-run pytest -s --alluredir=allure-results --disable-warnings -q
         env:
           PYTHONDONTWRITEBYTECODE: 1
           PYTHONUNBUFFERED: 1
 
+      # Получение истории Allure
       - name: Get Allure history
         uses: actions/checkout@v4.2.2
         if: always()
@@ -101,13 +97,6 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           publish_dir: allure-history
 
-      #      - name: Upload test file
-      #        run: cp /Data/upload_files/silver_angel.png $GITHUB_WORKSPACE/Data/upload_files/silver_angel.png
-
-      #test
-      #      - name: Ensure test files(upload photo)
-      #        run: mkdir -p Data/upload_files && cp path_to_local_file Data/upload_files/stock-photo-handsome-cheerful-man.jfif
-
       # Сохранение логов как артефактов в случае сбоя
       - name: Save test logs
         if: failure()
@@ -115,7 +104,7 @@ jobs:
           pytest --log-cli-level=INFO --capture=tee-sys --disable-warnings > pytest.log || true
         shell: bash
 
-        # Загрузка логов как артефактов(в случаем сбоя)
+      # Загрузка логов как артефактов(в случае сбоя)
       - name: Upload logs
         if: failure()
         uses: actions/upload-artifact@v4.4.3
