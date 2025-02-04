@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","11741","test_units_toggle_button[chromium]","tests","Tue Feb 04 11:35:17 GMT 2025","passed","Tue Feb 04 11:35:28 GMT 2025","","test_switch_units","",""
+"","14516","test_ci_different_weather_send_button_is_clickable[chromium]","tests","Tue Feb 04 11:34:40 GMT 2025","passed","Tue Feb 04 11:34:54 GMT 2025","","test_different_weather","",""
+"","14360","test_right_location_is_displayed_after_searching[chromium]","tests","Tue Feb 04 11:35:02 GMT 2025","passed","Tue Feb 04 11:35:16 GMT 2025","","test_find_location","",""
+"","11948","test_units_convertion[chromium]","tests","Tue Feb 04 11:35:29 GMT 2025","passed","Tue Feb 04 11:35:41 GMT 2025","","test_switch_units","",""
+"","6325","test_search_city_field_is_available[chromium]","tests","Tue Feb 04 11:34:55 GMT 2025","passed","Tue Feb 04 11:35:01 GMT 2025","","test_find_location","",""
+"","8559","test_different_weather_pop_up[chromium]","tests","Tue Feb 04 11:34:30 GMT 2025","passed","Tue Feb 04 11:34:39 GMT 2025","","test_different_weather","",""
