@@ -1,4 +1,3 @@
-import time
 from playwright.sync_api import expect
 
 from data.data_generator import DataGenerator
