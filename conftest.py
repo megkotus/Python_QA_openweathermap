@@ -1,4 +1,3 @@
-import allure
 import pytest
 from playwright.sync_api import Page
 from pages.welcome_page import WelcomePage

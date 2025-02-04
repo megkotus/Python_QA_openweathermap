@@ -30,3 +30,4 @@ def test_units_convertion(welcome_page):
     welcome_page.open_dropdown_of_eight_day_forecast(1)
     expect(welcome_page.eight_day_forecast_dropdown_content).to_have_text(re.compile("mph"))
     expect(welcome_page.eight_day_forecast_dropdown_content).to_have_text(re.compile("°F"))
+
