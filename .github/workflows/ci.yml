@@ -30,6 +30,10 @@ jobs:
         with:
           python-version: "3.12"  # Установка нужной версии Python
 
+        # Установка xvfb
+      - name: Install xvfb
+        run: sudo apt-get install -y xvfb
+
         # Установка зависимостей из requirements.txt
       - name: Install dependencies
         run: |
