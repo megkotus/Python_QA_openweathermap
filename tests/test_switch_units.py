@@ -27,6 +27,6 @@ def test_units_convertion(welcome_page):
     expect(welcome_page.eight_day_forecast).to_have_text(re.compile("°F"))
 
     # 8-day forecast dropdown
-    welcome_page.open_first_day_dropdown_of_eight_day_forecast()
-    expect(welcome_page.eight_day_forecast_dropdown).to_have_text(re.compile("mph"))
-    expect(welcome_page.eight_day_forecast_dropdown).to_have_text(re.compile("°F"))
+    welcome_page.open_dropdown_of_eight_day_forecast(1)
+    expect(welcome_page.eight_day_forecast_dropdown_content).to_have_text(re.compile("mph"))
+    expect(welcome_page.eight_day_forecast_dropdown_content).to_have_text(re.compile("°F"))
