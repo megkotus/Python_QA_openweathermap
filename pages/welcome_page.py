@@ -14,15 +14,24 @@ class WelcomePage():
         self.imperial_units_button = self.page.get_by_text('Imperial')
         self.metric_units_button = self.page.get_by_text('Metric')
 
-        self.eight_day_forecast_dropdown_button = self.page.locator(
-            'ul.day-list li:first-child div.day-list-values span.chevron-container')
+        self.eight_day_forecast_dropdown_button_open = self.page.locator(
+            'ul.day-list li div.day-list-values span.chevron-container')
+        self.eight_day_forecast_dropdown_button_close = self.page.locator(
+            '.scrolling-container-header span.chevron-container')
 
         self.units_toggle_css = self.page.locator('div#selected')
 
         self.current_temperature = self.page.locator('div.current-temp span')
         self.current_weather_items = self.page.locator('ul.weather-items')
+
         self.eight_day_forecast = self.page.locator('ul.day-list')
-        self.eight_day_forecast_dropdown = self.page.locator('.scrolling-container-content')
+        self.eight_day_forecast_item = self.page.locator('ul.day-list li')
+        self.eight_day_forecast_day = self.page.locator('ul.day-list li span:first-child')
+        self.eight_day_forecast_dropdown_header = self.page.locator('.scrolling-container-header ul li')
+        self.eight_day_forecast_dropdown_header_selected_day = self.page.locator('.scrolling-container-header ul li.active')
+        self.eight_day_forecast_dropdown_content = self.page.locator('.scrolling-container-content')
+        self.eight_day_forecast_dropdown_top_section = self.page.locator('.top-section')
+
         self.different_weather = self.page.get_by_text("Different Weather?")
         self.different_weather_pop_up = self.page.get_by_role("heading", name="Different weather")
         self.different_weather_pop_up_items = self.different_weather_pop_up_items = self.page.locator('ul.icons li')
@@ -47,8 +56,11 @@ class WelcomePage():
     def switch_to_metric_units(self):
         self.metric_units_button.click()
 
-    def open_first_day_dropdown_of_eight_day_forecast(self):
-        self.eight_day_forecast_dropdown_button.click()
+    def open_dropdown_of_eight_day_forecast(self, count):
+        self.eight_day_forecast_dropdown_button_open.nth(count).click()
+
+    def close_eight_day_forecast_dropdown(self):
+        self.eight_day_forecast_dropdown_button_close.click()
 
     def open_different_weather_pop_up(self):
         self.different_weather.click()

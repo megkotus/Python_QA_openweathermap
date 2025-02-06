@@ -1,3 +1,7 @@
 .venv
 
 __pycache__/
+
+tests/allure-results
+
+tests/test-results
