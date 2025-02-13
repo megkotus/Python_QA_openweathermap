@@ -1,5 +1,8 @@
 from playwright.sync_api import Page, expect
 
+from datetime import datetime
+import pytz
+
 from data.urls import Urls
 
 urls = Urls()
@@ -40,6 +43,9 @@ class WelcomePage():
         self.small_map = self.page.locator('div.map')
         self.small_map_center = self.page.locator('.leaflet-map-pane')
 
+        self.date_and_time = self.page.locator('div.current-container.mobile-padding div span.orange-text')
+        self.location = self.date_and_time.locator('+ h2')
+
     def visit(self):
         self.page.goto(urls.base_url)
         expect(self.page).to_have_url(urls.base_url)
@@ -78,3 +84,10 @@ class WelcomePage():
     def different_weather_click_send_button(self):
         self.different_weather_pop_up_send_button.click()
 
+    def get_date_and_time_at_showed_location(self):
+        city, _ = self.location.text_content().split(', ')
+        timezone = [tz for tz in pytz.all_timezones if F'{city}' in tz][0]
+        datetime_at_location = datetime.now(pytz.timezone(timezone)).strftime('%b %d, %I:%M%p').replace("PM",
+                                                                                                        "pm").replace(
+            "AM", "am")
+        return datetime_at_location
