@@ -7,6 +7,9 @@
 # https://github.com/peaceiris/actions-gh-pages/releases/tag/v4.0.0
 name: CI - OpenWeatherMap
 
+env:
+  SECRET_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
+
 on:
   pull_request:
     branches: [ main ]  # Запускать workflow при пуше в ветку main
