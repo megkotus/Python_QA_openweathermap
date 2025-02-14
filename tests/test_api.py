@@ -8,7 +8,7 @@ if not os.getenv('CI'):
     from dotenv import load_dotenv
     load_dotenv()
 
-api_key = os.getenv('OPEN_WEATHER_KEY')
+api_key = os.getenv('SECRET_KEY')
 urls = Urls()
 
 @pytest.mark.parametrize('city', ['London', 'Podgorica', 'Berlin', 'Dubrovnik'])
