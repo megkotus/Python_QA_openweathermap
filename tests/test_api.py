@@ -1,12 +1,14 @@
 import pytest
-from dotenv import load_dotenv
 import os
 import requests
 
 from data.urls import Urls
 
-load_dotenv()
-api_key = os.getenv('API_KEY')
+if not os.getenv('CI'):
+    from dotenv import load_dotenv
+    load_dotenv()
+
+api_key = os.getenv('OPEN_WEATHER_KEY')
 urls = Urls()
 
 @pytest.mark.parametrize('city', ['London', 'Podgorica', 'Berlin', 'Dubrovnik'])
