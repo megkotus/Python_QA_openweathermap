@@ -1,6 +1,6 @@
 from playwright.sync_api import expect
 
-# TC 01.05.01 A detailed day forecast (any day of 8) | Forecast for the selected day is displayed
+# TC 01.06.01 A detailed day forecast (any day of 8) | Forecast for the selected day is displayed
 def test_each_day_of_eight_day_forecast(welcome_page):
     welcome_page.visit()
     for i in range(welcome_page.eight_day_forecast_item.count()):
