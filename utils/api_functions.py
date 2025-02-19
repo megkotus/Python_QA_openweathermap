@@ -20,5 +20,12 @@ def get_weather_by_zip_code(zip_code, app_id = api_key):
     return response
 
 def get_weather_by_city_id(city_id, app_id = api_key):
-    response = requests.get(urls.api_url, params={'q': city_id, 'appid': app_id})
+    response = requests.get(urls.api_url, params={'id': city_id, 'appid': app_id})
     return response
+
+def get_cities_id_by_city_name(city):
+    response = get_weather_by_city_name(city)
+    data = response.json()
+    return {
+        city: data['id']
+    }
