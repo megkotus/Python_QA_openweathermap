@@ -88,7 +88,7 @@ class WelcomePage:
     def get_date_and_time_at_showed_location(self):
         city, _ = self.location.text_content().split(', ')
         timezone = [tz for tz in pytz.all_timezones if F'{city}' in tz][0]
-        datetime_at_location = datetime.now(pytz.timezone(timezone)).strftime('%b %d, %I:%M%p').replace("PM",
+        datetime_at_location = datetime.now(pytz.timezone(timezone)).strftime('%b %-d, %I:%M%p').replace("PM",
                                                                                                         "pm").replace(
             "AM", "am")
         return datetime_at_location
