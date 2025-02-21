@@ -42,7 +42,7 @@ class WelcomePage:
 
         self.small_map = self.page.locator('div.map')
         self.small_map_center = self.page.locator('.leaflet-map-pane')
-        self.small_map_location = self.page.locator('.leaflet-proxy.leaflet-zoom-animated')
+        self.small_map_location = self.page.locator('div.leaflet-map-pane div.leaflet-proxy.leaflet-zoom-animated')
 
         self.date_and_time = self.page.locator('div.current-container.mobile-padding div span.orange-text')
         self.location = self.date_and_time.locator('+ h2')
