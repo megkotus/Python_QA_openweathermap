@@ -42,6 +42,7 @@ class WelcomePage:
 
         self.small_map = self.page.locator('div.map')
         self.small_map_center = self.page.locator('.leaflet-map-pane')
+        self.small_map_location = self.page.locator('.leaflet-proxy.leaflet-zoom-animated')
 
         self.date_and_time = self.page.locator('div.current-container.mobile-padding div span.orange-text')
         self.location = self.date_and_time.locator('+ h2')
@@ -92,6 +93,6 @@ class WelcomePage:
             "AM", "am")
         return datetime_at_location
 
-    def set_location(self):
+    def set_location(self, coordinates):
         self.page.context.grant_permissions(["geolocation"])
-        self.page.context.set_geolocation({"latitude": 37.7749, "longitude": -122.4194})
+        self.page.context.set_geolocation(coordinates)
