@@ -6,7 +6,7 @@ import pytz
 from data.urls import Urls
 
 urls = Urls()
-class WelcomePage():
+class WelcomePage:
     def __init__(self, page: Page):
         self.page = page
         self.search_city_input = self.page.get_by_role('textbox', name='Search city')
@@ -91,3 +91,7 @@ class WelcomePage():
                                                                                                         "pm").replace(
             "AM", "am")
         return datetime_at_location
+
+    def set_location(self):
+        self.page.context.grant_permissions(["geolocation"])
+        self.page.context.set_geolocation({"latitude": 37.7749, "longitude": -122.4194})
