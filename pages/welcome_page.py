@@ -6,7 +6,7 @@ import pytz
 from data.urls import Urls
 
 urls = Urls()
-class WelcomePage():
+class WelcomePage:
     def __init__(self, page: Page):
         self.page = page
         self.search_city_input = self.page.get_by_role('textbox', name='Search city')
@@ -42,6 +42,7 @@ class WelcomePage():
 
         self.small_map = self.page.locator('div.map')
         self.small_map_center = self.page.locator('.leaflet-map-pane')
+        self.small_map_location = self.page.locator('div.leaflet-map-pane div.leaflet-proxy.leaflet-zoom-animated')
 
         self.date_and_time = self.page.locator('div.current-container.mobile-padding div span.orange-text')
         self.location = self.date_and_time.locator('+ h2')
@@ -91,3 +92,7 @@ class WelcomePage():
                                                                                                         "pm").replace(
             "AM", "am")
         return datetime_at_location
+
+    def set_location(self, coordinates):
+        self.page.context.grant_permissions(["geolocation"])
+        self.page.context.set_geolocation(coordinates)
