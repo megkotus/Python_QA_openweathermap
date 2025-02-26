@@ -26,4 +26,4 @@ def test_weather_api_returns_correct_city_by_id(city):
     response_city_id = get_cities_id_by_city_name(city)
     response = get_weather_by_city_id(response_city_id[city])
     assert response.status_code == 200, f'Expected 200, got {response.status_code}'
-    assert response.json()['name'] == city, f'Expected {city}, got {response.json()['name']}'
+    assert response.json()['name'] == city, f'Expected {city}, got {response.json()["name"]}'
