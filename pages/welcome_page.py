@@ -6,21 +6,31 @@ import pytz
 from data.urls import Urls
 
 urls = Urls()
+
+
 class WelcomePage:
     def __init__(self, page: Page):
         self.page = page
-        self.search_city_input = self.page.get_by_role('textbox', name='Search city')
-        self.search_city_button = self.page.get_by_role('button', name='Search')
-        self.dropdown_search_list = self.page.locator('ul.search-dropdown-menu li')
+        self.search_city_input = self.page.get_by_role(
+            'textbox', name='Search city'
+        )
+        self.search_city_button = self.page.get_by_role(
+            'button', name='Search'
+        )
+        self.dropdown_search_list = self.page.locator(
+            'ul.search-dropdown-menu li'
+        )
         self.location_header = self.page.locator('.current-container h2')
 
         self.imperial_units_button = self.page.get_by_text('Imperial')
         self.metric_units_button = self.page.get_by_text('Metric')
 
         self.eight_day_forecast_dropdown_button_open = self.page.locator(
-            'ul.day-list li div.day-list-values span.chevron-container')
+            'ul.day-list li div.day-list-values span.chevron-container'
+        )
         self.eight_day_forecast_dropdown_button_close = self.page.locator(
-            '.scrolling-container-header span.chevron-container')
+            '.scrolling-container-header span.chevron-container'
+        )
 
         self.units_toggle_css = self.page.locator('div#selected')
 
@@ -29,22 +39,42 @@ class WelcomePage:
 
         self.eight_day_forecast = self.page.locator('ul.day-list')
         self.eight_day_forecast_item = self.page.locator('ul.day-list li')
-        self.eight_day_forecast_day = self.page.locator('ul.day-list li span:first-child')
-        self.eight_day_forecast_dropdown_header = self.page.locator('.scrolling-container-header ul li')
-        self.eight_day_forecast_dropdown_header_selected_day = self.page.locator('.scrolling-container-header ul li.active')
-        self.eight_day_forecast_dropdown_content = self.page.locator('.scrolling-container-content')
-        self.eight_day_forecast_dropdown_top_section = self.page.locator('.top-section')
+        self.eight_day_forecast_day = self.page.locator(
+            'ul.day-list li span:first-child'
+        )
+        self.eight_day_forecast_dropdown_header = self.page.locator(
+            '.scrolling-container-header ul li'
+        )
+        self.eight_day_forecast_dropdown_header_selected_day = (
+            self.page.locator('.scrolling-container-header ul li.active')
+        )
+        self.eight_day_forecast_dropdown_content = self.page.locator(
+            '.scrolling-container-content'
+        )
+        self.eight_day_forecast_dropdown_top_section = self.page.locator(
+            '.top-section'
+        )
 
-        self.different_weather = self.page.get_by_text("Different Weather?")
-        self.different_weather_pop_up = self.page.get_by_role("heading", name="Different weather")
-        self.different_weather_pop_up_items = self.different_weather_pop_up_items = self.page.locator('ul.icons li')
-        self.different_weather_pop_up_send_button = self.page.get_by_text('Send')
+        self.different_weather = self.page.get_by_text('Different Weather?')
+        self.different_weather_pop_up = self.page.get_by_role(
+            'heading', name='Different weather'
+        )
+        self.different_weather_pop_up_items = (
+            self.different_weather_pop_up_items
+        ) = self.page.locator('ul.icons li')
+        self.different_weather_pop_up_send_button = self.page.get_by_text(
+            'Send'
+        )
 
         self.small_map = self.page.locator('div.map')
         self.small_map_center = self.page.locator('.leaflet-map-pane')
-        self.small_map_location = self.page.locator('div.leaflet-map-pane div.leaflet-proxy.leaflet-zoom-animated')
+        self.small_map_location = self.page.locator(
+            'div.leaflet-map-pane div.leaflet-proxy.leaflet-zoom-animated'
+        )
 
-        self.date_and_time = self.page.locator('div.current-container.mobile-padding div span.orange-text')
+        self.date_and_time = self.page.locator(
+            'div.current-container.mobile-padding div span.orange-text'
+        )
         self.location = self.date_and_time.locator('+ h2')
 
     def visit(self):
@@ -75,8 +105,8 @@ class WelcomePage:
     def move_small_map(self):
         self.small_map.drag_to(
             self.small_map,
-            source_position={"x": 5, "y": 5},
-            target_position={"x": 15, "y": 15}
+            source_position={'x': 5, 'y': 5},
+            target_position={'x': 15, 'y': 15},
         )
 
     def choose_different_weather_first_option(self):
@@ -87,12 +117,15 @@ class WelcomePage:
 
     def get_date_and_time_at_showed_location(self):
         city, _ = self.location.text_content().split(', ')
-        timezone = [tz for tz in pytz.all_timezones if F'{city}' in tz][0]
-        datetime_at_location = datetime.now(pytz.timezone(timezone)).strftime('%b %-d, %I:%M%p').replace("PM",
-                                                                                                        "pm").replace(
-            "AM", "am")
+        timezone = [tz for tz in pytz.all_timezones if f'{city}' in tz][0]
+        datetime_at_location = (
+            datetime.now(pytz.timezone(timezone))
+            .strftime('%b %-d, %I:%M%p')
+            .replace('PM', 'pm')
+            .replace('AM', 'am')
+        )
         return datetime_at_location
 
     def set_location(self, coordinates):
-        self.page.context.grant_permissions(["geolocation"])
+        self.page.context.grant_permissions(['geolocation'])
         self.page.context.set_geolocation(coordinates)
