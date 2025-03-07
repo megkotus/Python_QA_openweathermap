@@ -1,4 +1,3 @@
-
 # class WelcomePageLocators:
 
 # class SignupLoginLocators:
