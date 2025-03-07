@@ -9,7 +9,7 @@ urls = Urls()
 
 
 class WelcomePage:
-    def __init__(self, page: Page):
+    def __init__(self, page: Page, has_header=True):
         self.page = page
         self.search_city_input = self.page.get_by_role(
             'textbox', name='Search city'
