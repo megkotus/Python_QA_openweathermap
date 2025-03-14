@@ -1,9 +1,9 @@
 from playwright.sync_api import expect
 
-#TC 01.03.01 Check geolocation | Compare displayed location name with the browser detected location
+# TC 01.03.01 Check geolocation | Compare displayed location name with the browser detected location
 def test_get_location(welcome_page):
     location = 'San Francisco, US'
-    coordinates = {"latitude": 37.7749, "longitude": -122.4194}
+    coordinates = {'latitude': 37.7749, 'longitude': -122.4194}
     param, val = ['transform', 'matrix(128, 0, 0, 128, 10482.2, 25331)']
 
     welcome_page.set_location(coordinates)
