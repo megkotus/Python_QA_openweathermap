@@ -1,8 +1,5 @@
 # Openweathermap Web App testing project
 
-Automated Testing Project
-=========================
-
 This project was created by RedRover School graduates as a way to reinforce our knowledge and continue learning new skills in automated testing.
 
 Our goal is to apply best practices, improve our testing expertise, and ensure reliable and efficient test automation for web applications.
